@@ -53,7 +53,7 @@ server.listen(1234, function() {
 let routes = {
   test: function(data, res) {
     // this function called if the path is 'test'
-    shell.exec('./scripts/send.sh')
+    shell.exec('sudo ./scripts/send.sh')
 
     let payload = {
       name: "test"
