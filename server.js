@@ -51,12 +51,12 @@ server.listen(1234, function() {
 // data: the info about the request
 // callback: the function to call to send the response
 let routes = {
-  kenny: function(data, res) {
-    // this function called if the path is 'kenny'
-    shell.exec('./scripts/test.sh')
+  test: function(data, res) {
+    // this function called if the path is 'test'
+    shell.exec('./scripts/send.sh')
 
     let payload = {
-      name: "Kenny"
+      name: "test"
     };
     let payloadStr = JSON.stringify(payload);
     res.setHeader("Content-Type", "application/json");
@@ -66,33 +66,20 @@ let routes = {
     res.end("\n");
   },
 
-  cartman: function(data, res) {
-    // this function called if the path is 'cartman'
-    let payload = {
-      name: "Cartman"
-    };
-    let payloadStr = JSON.stringify(payload);
-    res.setHeader("Content-Type", "application/json");
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.writeHead(200);
-    res.write(payloadStr);
-    res.end("\n");
-  },
-
-  "kenny/is/mysterion": function(data, res) {
-    //this function called if path is 'kenny/is/mysterion'
-    let payload = {
-      name: "Mysterion",
-      enemy: "The Coon",
-      today: +new Date()
-    };
-    let payloadStr = JSON.stringify(payload);
-    res.setHeader("Content-Type", "application/json");
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.writeHead(200);
-    res.write(payloadStr);
-    res.end("\n");
-  },
+  // "kenny/is/mysterion": function(data, res) {
+  //   //this function called if path is 'kenny/is/mysterion'
+  //   let payload = {
+  //     name: "Mysterion",
+  //     enemy: "The Coon",
+  //     today: +new Date()
+  //   };
+  //   let payloadStr = JSON.stringify(payload);
+  //   res.setHeader("Content-Type", "application/json");
+  //   res.setHeader("Access-Control-Allow-Origin", "*");
+  //   res.writeHead(200);
+  //   res.write(payloadStr);
+  //   res.end("\n");
+  // },
 
   notFound: function(data, res) {
     //this one gets called if no route matches
