@@ -35,6 +35,7 @@ const server = http.createServer(function(req, res) {
       headers: headers,
       method: method
     };
+
     // pass data incase we need info about the request
     // pass the response object because router is outside our scope
     route(data, res);
@@ -51,9 +52,20 @@ server.listen(1234, function() {
 // data: the info about the request
 // callback: the function to call to send the response
 let routes = {
-  test: function(data, res) {
-    // this function called if the path is 'test'
-    shell.exec('sudo ./scripts/send.sh')
+  submit: function(data, res) {
+    // this function called if the path is 'submit'
+    // console.log("data headers: " + data.headers)
+    // console.log("data method: " + data.method)
+    // console.log("data path: " + data.path)
+    // console.log("data qs: " + data.qs)
+    // console.log("data qs: " + JSON.stringify({...data.queryString}))
+    // console.log("res: " + res)
+
+    // console.log(data.queryString.l)
+    // console.log(data.queryString.r)
+    
+    // send.sh script accepts 2 parameter
+    shell.exec('sudo ./scripts/send.sh ' + data.queryString.l + ' ' + data.queryString.r);
 
     let payload = {
       name: "test"
